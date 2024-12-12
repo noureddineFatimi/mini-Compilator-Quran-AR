@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تحليل النصوص القرآنية</title>
+</head>
+<body dir="rtl">
+    <h1>تحليل النصوص القرآنية</h1>
+    <form method="POST">
+        <label for="input_text">أدخل النص:</label><br>
+        <textarea id="input_text" name="input_text" rows="10" cols="50">{{ request.form["input_text"] if request.method == "POST" else "" }}</textarea><br>
+        <input type="submit" value="تحليل">
+    </form>
+
+    {% if lexical_errors %}
+        <h2>الأخطاء اللغوية المكتشفة:</h2>
+        <ul>
+            {% for error in lexical_errors %}
+                <li>{{ error }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if result %}
+        <h2>النتيجة:</h2>
+        <p>{{ result }}</p>
+    {% endif %}
+</body>
+</html>
