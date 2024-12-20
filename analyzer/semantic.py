@@ -1,6 +1,6 @@
 from .lexical import lexer, tokens  # Importer le lexer et les tokens
 import ply.yacc as yacc
-
+from .mini_dictionnaire import mini_dictionnaire
 # Ordre attendu des versets
 EXPECTED_VERSES = [
     "QUL HUWA ALLAHU AHADUN",
@@ -74,14 +74,24 @@ def semantic_analysis(data):
 
     # Vérification de l'ordre des versets
     if len(input_verses) > len(EXPECTED_VERSES):
-        return "Erreur : Nombre de versets incorrect."
+        return ["Erreur : Nombre de versets incorrect.", " "]
 
     valid, message = check_verses_order(input_verses)
     if not valid:
-        return message
+        return [message," "]
 
+     # Si l'analyse est réussie, préparer les traductions
+    translations = {"français": [], "anglais": [], "tamazight": []}
+    for token in tokens:
+        if token in mini_dictionnaire:
+            for lang, translation in mini_dictionnaire[token].items():
+                translations[lang].append(translation)
 
-    return "Analyse sémantique réussie : Tous les versets respectent l'ordre attendu."
+     # Fusionner les mots pour chaque langue
+    for lang in translations:
+        translations[lang] = " ".join(translations[lang])
+
+    return ["Analyse sémantique réussie : Tous les versets respectent l'ordre attendu.",translations]
 
 
 

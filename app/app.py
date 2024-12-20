@@ -18,9 +18,7 @@ def index():
     lexical_errors = []
     semantic_result = ""
     vailable=False
-    verses_in_fr=""
-    verses_in_en=""
-    verses_in_tamazigh=""
+    translations = {}
         # Dans app.py
     if request.method == "POST":
         user_input = request.form["input_text"]
@@ -39,14 +37,15 @@ def index():
         else:
             # Si l'analyse lexicale est réussie, faire l'analyse sémantique
             semantic_result = semantic_analysis(user_input)
-            if "Erreur" in semantic_result:
-                result = semantic_result  # Afficher l'erreur sémantique
+            if "E" in semantic_result[0]:
+                result = semantic_result[0]  # Afficher l'erreur sémantique
             else:
                 vailable=True
-                result = f"Analyse sémantique réussie : {semantic_result}"
+                result = semantic_result[0]
+                translations = semantic_result[1]
                
 
-    return render_template("index.html", result=result, lexical_errors=lexical_errors,vailable=vailable,verses_in_fr=verses_in_fr,verses_in_en=verses_in_en,verses_in_tamazigh=verses_in_tamazigh)
+    return render_template("index.html", result=result, lexical_errors=lexical_errors,vailable=vailable,translations=translations)
 
 if __name__ == "__main__":
     app.run(debug=True)

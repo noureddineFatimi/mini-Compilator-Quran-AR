@@ -32,20 +32,21 @@ def p_start_four(p):
     print("Structure syntaxique valide : V1 V2 V3 V4.")
 
 def p_V1(p):
-    "V1 : قُلْ هُوَ اللَّهُ أَحَدٌ"
+    "V1 : قل هو الله أحد"
     pass
 
 def p_V2(p):
-    "V2 : اللَّهُ الصَّمَدُ"
+    "V2 : الله الصمد"
     pass
 
 def p_V3(p):
-    "V3 : لَمْ يَلِدْ وَلَمْ يُولَدْ"
+    "V3 : لم يلد ولم يولد"
     pass
 
 def p_V4(p):
-    "V4 : وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ"
+    "V4 : ولم يكن له كفوا أحد"
     pass
+
 
 def p_error(p):
     print("Erreur syntaxique détectée.")

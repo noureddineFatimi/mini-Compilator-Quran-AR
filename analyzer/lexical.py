@@ -3,18 +3,18 @@ import difflib  # Pour la suggestion de mots similaires
 
 # Liste des mots clés à identifier
 reserved = {
-  'قُلْ': 'QUL',
-    'هُوَ': 'HUWA',
-    'اللَّهُ': 'ALLAHU',
-    'أَحَدٌ': 'AHADUN',
-    'الصَّمَدُ': 'ALSSAMADU',
-    'لَمْ': 'LAM',
-    'يَلِدْ': 'YALID',
-    'وَلَمْ': 'WALAM',
-    'يُولَدْ': 'YOOLADU',
-    'يَكُنْ': 'YAKUN',
-    'لَهُ': 'LAHU',
-    'كُفُوًا': 'KUFUWAN'
+   'قل': 'QUL',
+    'هو': 'HUWA',
+    'الله': 'ALLAHU',
+    'احد': 'AHADUN',
+    'الصمد': 'ALSSAMADU',
+    'لم': 'LAM',
+    'يلد': 'YALID',
+    'ولم': 'WALAM',
+    'يولد': 'YOOLADU',
+    'يكن': 'YAKUN',
+    'له': 'LAHU',
+    'كفوا': 'KUFUWAN'
 }
 
 
@@ -67,3 +67,6 @@ def analyze_lexical(input_data):
 
 
 
+if __name__ == "__main__":
+    input = "Ql huwa allahu ahadun"
+    print(analyze_lexical(input))
