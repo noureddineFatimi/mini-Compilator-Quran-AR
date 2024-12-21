@@ -16,7 +16,7 @@ app = Flask(__name__)
 def index():
     result = ""
     lexical_errors = []
-    semantic_result = ""
+    semantic_result = []
     vailable=False
     translations = {}
         # Dans app.py
@@ -29,7 +29,7 @@ def index():
         # Si lexical_errors contient des objets autres que des chaînes, on extrait les messages d'erreur
         if lexical_errors:
             
-            result = "Des erreurs lexicales ont été détectées.\n" + "\n".join(lexical_errors)
+            result = ""
 
             #result = "Des erreurs lexicales ont été détectées.\n" + lexical_errors
             #lexical_errors = [str(error) for error in lexical_errors]  # Assurez-vous que lexical_errors est une liste de chaînes
@@ -37,7 +37,7 @@ def index():
         else:
             # Si l'analyse lexicale est réussie, faire l'analyse sémantique
             semantic_result = semantic_analysis(user_input)
-            if "E" in semantic_result[0]:
+            if "خطأ" in semantic_result[0]:
                 result = semantic_result[0]  # Afficher l'erreur sémantique
             else:
                 vailable=True

@@ -16,7 +16,7 @@
             direction: rtl;
             text-align: center;
             line-height: 1.8;
-            height: 100vh;
+            height: 100%;
         }
 
         .container {
@@ -97,11 +97,36 @@
             font-size: 0.9em;
             color: #555;
         }
+
+        .translations-button {
+            padding: 5px 10px;
+            background-color: #b8860b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .translations-button:hover {
+            background-color: #daa520;
+        }
+
+        .translation {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+            padding: 7px;
+            background-color: #fef9e7;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>تحليل النصوص القرآنية</h1>
+        <h1>تحليل سورة الاخلاص</h1>
         <form method="POST">
             <label for="input_text">أدخل النص:</label><br>
             <textarea id="input_text" name="input_text">{{ request.form["input_text"] if request.method == "POST" else "" }}</textarea><br>
@@ -123,6 +148,51 @@
                 {{ result }}
             </div>
         {% endif %}
+
+        {% if vailable %}
+        <h2>الترجمة :</h2>
+
+        <div class="translation">
+            <p><strong>الفرنسية :</strong> {{ translations["français"] }}</p>
+            <button id="readFrench" class="translations-button">قراءة الترجمة الفرنسية</button>
+        </div>
+
+        <div class="translation">
+            <p><strong>الانجليزية :</strong> {{ translations["anglais"] }}</p>
+            <button id="readEnglish" class="translations-button">قراءة الترجمة الإنجليزية</button>
+        </div>
+
+        <div class="translation">
+            <p><strong>الامازيغية :</strong> {{ translations["tamazight"] }}</p>
+            
+        </div>
+    {% endif %}
     </div>
+    <script>
+        // Lire un texte donné avec la synthèse vocale
+        function readText(text, lang) {
+            if ('speechSynthesis' in window) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = lang;
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("خاصية القراءة بالصوت غير مدعومة في متصفحك.");
+            }
+        }
+
+        // Lire la traduction française
+        document.getElementById("readFrench")?.addEventListener("click", function() {
+            const text = "{{ translations['français'] }}";
+            readText(text, 'fr-FR'); // Français
+        });
+
+        // Lire la traduction anglaise
+        document.getElementById("readEnglish")?.addEventListener("click", function() {
+            const text = "{{ translations['anglais'] }}";
+            readText(text, 'en-US'); // Anglais
+        });
+
+       
+    </script>
 </body>
 </html>

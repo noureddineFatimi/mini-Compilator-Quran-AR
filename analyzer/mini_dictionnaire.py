@@ -12,7 +12,7 @@ mini_dictionnaire = {
     "ALLAHU": {
         "français": "Allah",
         "anglais": "Allah",
-        "tamazight": "Öebbi"
+        "tamazight": "Oebbi"
     },
     "AHADUN": {
         "français": ", Un",

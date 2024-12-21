@@ -9,19 +9,39 @@ EXPECTED_VERSES = [
     "WALAM YAKUN LAHU KUFUWAN AHADUN"
 ]
 
+V_arabe = {
+    'QUL': 'قل',
+    'HUWA':'هو',
+    'ALLAHU':'الله',
+    'AHADUN':'احد',
+    'ALSSAMADU':'الصمد',
+    'LAM':'لم',
+    'YALID':'يلد',
+    'WALAM':'ولم',
+    'YOOLADU':'يولد',
+    'YAKUN':'يكن',
+    'LAHU':'له',
+    'KUFUWAN':'كفوا'
+}
 
 # Fonction pour vérifier l'ordre des mots dans un verset
 def check_verse_order(verse, expected_words):
     words = verse.split()
     if words != expected_words:
-        return False, f"خطأ: ترتيب الكلمات غير صحيح في الآية '{verse}'. المتوقع: {' '.join(expected_words)}"
+
+         # Traduire les mots en arabe en utilisant V_arabe
+        translated_verse = ' '.join(V_arabe[word] for word in words if word in V_arabe)
+        translated_expected = ' '.join(V_arabe[word] for word in expected_words if word in V_arabe)
+
+        return False, f"  ترتيب الكلمات غير صحيح في الآية '{translated_verse}'، المتوقع: {translated_expected}"
     return True, None
 
 # Fonction pour vérifier l'ordre des versets
 def check_verses_order(input_verses):
     # Vérifier le nombre de versets avant l'ordre
     if len(input_verses) > len(EXPECTED_VERSES):
-        return False, f"Erreur : Le nombre de versets est incorrect. Attendu {len(EXPECTED_VERSES)} versets, mais trouvé {len(input_verses)}."
+       return False, f"خطأ: عدد الآيات غير صحيح. المتوقع {len(EXPECTED_VERSES)} آية، لكن الموجود {len(input_verses)}."
+
     
     # Vérifier l'ordre des versets
     for i, verse in enumerate(input_verses):
@@ -30,9 +50,10 @@ def check_verses_order(input_verses):
         
         if not valid:
             # Préciser quel verset est en erreur
-            return False, f"Erreur dans le verset {i+1}: {error_message}."  # Indiquer le numéro du verset avec l'erreur
+            return False, f" خطأ في الآية رقم {i+1}: {error_message}."
+  # Indiquer le numéro du verset avec l'erreur
     
-    return True, "Tous les versets respectent l'ordre attendu."
+    return True, "جميع الآيات تحترم الترتيب المتوقع."
 
 # Reconstruction des versets à partir des tokens
 def reconstruct_verses(tokens):
@@ -74,11 +95,14 @@ def semantic_analysis(data):
 
     # Vérification de l'ordre des versets
     if len(input_verses) > len(EXPECTED_VERSES):
-        return ["Erreur : Nombre de versets incorrect.", " "]
+        return [f"خطأ: عدد الآيات غير صحيح. المتوقع {len(EXPECTED_VERSES)} آية، لكن الموجود {len(input_verses)}.", " "]
 
     valid, message = check_verses_order(input_verses)
     if not valid:
         return [message," "]
+
+    if input_verses == []:
+        return ["خطأ: ترتيب الكلمات غير صحيح أو الآية غير مكتملة", " "]
 
      # Si l'analyse est réussie, préparer les traductions
     translations = {"français": [], "anglais": [], "tamazight": []}
@@ -91,7 +115,8 @@ def semantic_analysis(data):
     for lang in translations:
         translations[lang] = " ".join(translations[lang])
 
-    return ["Analyse sémantique réussie : Tous les versets respectent l'ordre attendu.",translations]
+    return ["النص الذي أدخلته صحيح.", translations]
+
 
 
 
