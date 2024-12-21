@@ -1,13 +1,11 @@
 import ply.yacc as yacc
-from .lexical import lexer, tokens  # Importer lexer et tokens
+from .lexical import lexer, tokens 
 
-# Variables pour stocker les versets extraits
 versets = []
 
-# Règles de production pour le parser
 def p_start_single(p):
     "start : V1"
-    versets.append("QUL HUWA ALLAHU AHADUN")  # Ajouter le verset complet au résultat
+    versets.append("QUL HUWA ALLAHU AHADUN")  
     print("Structure syntaxique valide : V1.")
 
 def p_start_two(p):
@@ -51,15 +49,12 @@ def p_V4(p):
 def p_error(p):
     print("Erreur syntaxique détectée.")
 
-# Construire l'analyseur syntaxique
 parser = yacc.yacc()
 
-# Test de l'analyseur syntaxique
 if __name__ == "__main__":
     data = "Qul huwa Allahu ahadun Allahu alssamadu lam yalid walam yooladu"
-    lexer.input(data)  # Passer les données au lexer
-    tokens = [tok.type for tok in lexer]  # Extraire tous les tokens
+    lexer.input(data) 
+    tokens = [tok.type for tok in lexer]  
     print("Tokens détectés par le lexer:", tokens)
-    
-    parser.parse(data)  # Passer les données au parser
+    parser.parse(data)  
     print("Versets extraits :", versets)
