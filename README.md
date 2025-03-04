@@ -9,8 +9,8 @@ This project is a mini-compiler in Python designed to:
 ✔️ Translate verses into French, English, and Tamazight
 
 # 🛠️ Technologies Used
-Python 3.x
-Regex (for lexical analysis)
+Python 3.x,
+,Regex (for lexical analysis)
 Python data structures (for parsing and translation)
 
 # 📦 Main Features
