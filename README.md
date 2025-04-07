@@ -18,25 +18,13 @@ A Python-based mini-compiler for validating and processing verses from Surah Al-
 - 🧹 **Text Processing**: Regular expressions and custom tokenizers  
 - 🧪 **Testing Framework**: Pytest  
 
-## Video Demonstrations
+## 📹 Video Demonstrations
 
-### Arabic Transcription Demo
-<p align="center">
-  <video width="700" controls>
-    <source src="ARABIC _TRANSCRIPTION.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</p>
-<p align="center"><em>Arabic transcription validation demonstration</em></p>
+### 📝 Arabic Transcription Demo
+[▶️ Watch Arabic Transcription Demo](ARABIC _TRANSCRIPTION.mp4)
 
-### Phonetic Transcription Demo
-<p align="center">
-  <video width="700" controls>
-    <source src="PHONETIC_TRANSCRIPTION.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-</p>
-<p align="center"><em>Phonetic transcription validation demonstration</em></p>
+### 🔤 Phonetic Transcription Demo
+[▶️ Watch Phonetic Transcription Demo](PHONETIC_TRANSCRIPTION.mp4)
 
 ## 📦 Installation & Setup
 
