@@ -18,6 +18,18 @@ A Python-based mini-compiler for validating and processing verses from Surah Al-
 - 🧹 **Text Processing**: Regular expressions and custom tokenizers  
 - 🧪 **Testing Framework**: Pytest  
 
+### 📝 Arabic transcript interface
+<p align="center">
+  <img src="screenshot(1).jpg" alt="Arabic Script Validation" width="700">
+</p>
+<p align="center"><em>Validation of verses in Arabic script with detailed feedback</em></p>
+
+### 📝 Phonetic transcript interface
+<p align="center">
+  <img src="screenshot.jpg" alt="Arabic Script Validation" width="700">
+</p>
+<p align="center"><em>Validation of verses in Arabic script with detailed feedback</em></p>
+
 ## 📹 Video Demonstrations
 
 ### 📝 Link to my drive
