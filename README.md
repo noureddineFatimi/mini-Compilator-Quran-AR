@@ -20,11 +20,8 @@ A Python-based mini-compiler for validating and processing verses from Surah Al-
 
 ## 📹 Video Demonstrations
 
-### 📝 Arabic Transcription Demo
-[▶️ Watch Arabic Transcription Demo](ARABIC _TRANSCRIPTION.mp4)
-
-### 🔤 Phonetic Transcription Demo
-[▶️ Watch Phonetic Transcription Demo](PHONETIC_TRANSCRIPTION.mp4)
+### 📝 Link to my drive
+  - <a href="https://drive.google.com/drive/folders/1ry6ae5kcRUNoOBda-b_0wPMyMtP4qZ0a?usp=drive_link">My drive</a>
 
 ## 📦 Installation & Setup
 
