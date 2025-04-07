@@ -1,47 +1,90 @@
 import ply.lex as lex
 import difflib
 
-reserved = {
-   'قل': 'QUL',
-    'هو': 'HUWA',
-    'الله': 'ALLAHU',
-    'احد': 'AHADUN',
-    'الصمد': 'ALSSAMADU',
-    'لم': 'LAM',
-    'يلد': 'YALID',
-    'ولم': 'WALAM',
-    'يولد': 'YOOLADU',
-    'يكن': 'YAKUN',
-    'له': 'LAHU',
-    'كفوا': 'KUFUWAN'
-}
+# Liste des tokens arabes basés sur des règles régulières
+tokens = [
+    'QUL', 'HUWA', 'ALLAHU', 'AHADUN', 'ALSSAMADU', 
+    'LAM', 'YALID', 'WALAM', 'YOOLADU', 'YAKUN', 
+    'LAHU', 'KUFUWAN', 'ERROR'
+]
 
-tokens = list(reserved.values()) + ['ERROR']
-
-def t_WORD(t):
-    r'[a-zA-Z\u0600-\u06FF]+'  
-    if t.value in reserved:
-        t.type = reserved[t.value]  
-    else:
-        t.type = 'ERROR'  
+# Définir chaque token à l'aide d'une expression régulière
+def t_QUL(t):
+    r'قل'
     return t
 
+def t_HUWA(t):
+    r'هو'
+    return t
+
+def t_ALLAHU(t):
+    r'الله'
+    return t
+
+def t_AHADUN(t):
+    r'احد'
+    return t
+
+def t_ALSSAMADU(t):
+    r'الصمد'
+    return t
+
+def t_LAM(t):
+    r'لم'
+    return t
+
+def t_YALID(t):
+    r'يلد'
+    return t
+
+def t_WALAM(t):
+    r'ولم'
+    return t
+
+def t_YOOLADU(t):
+    r'يولد'
+    return t
+
+def t_YAKUN(t):
+    r'يكن'
+    return t
+
+def t_LAHU(t):
+    r'له'
+    return t
+
+def t_KUFUWAN(t):
+    r'كفوا'
+    return t
+
+# Si aucun token valide n'est trouvé
+def t_WORD(t):
+    r'[a-zA-Z\u0600-\u06FF]+'  # Accepte tout mot arabe ou anglais
+    t.type = 'ERROR'  # Considéré comme une erreur
+    return t
+
+# Fonction pour suggérer des corrections
 def suggest_correction(word):
-    suggestions = difflib.get_close_matches(word, reserved.keys(), n=3, cutoff=0.6)
+    valid_tokens = ['قل', 'هو', 'الله', 'احد', 'الصمد', 'لم', 'يلد', 'ولم', 'يولد', 'يكن', 'له', 'كفوا']
+    suggestions = difflib.get_close_matches(word, valid_tokens, n=3, cutoff=0.6)
     if not suggestions:
         return "لا توجد اقتراحات متوفرة."
     return '، '.join(suggestions)
 
+# Ignorer les espaces, tabulations et nouvelles lignes
 t_ignore = ' \t\n'
 
+# Gestion des erreurs lexicales
 def t_error(t):
-    error_message = f"Caractère invalide: {t.value[0]} à la position {t.lexpos}. Le mot '{t.value}' n'est pas valide."
+    error_message = f"حرف غير صالح: {t.value[0]} في الموضع {t.lexpos}. الكلمة '{t.value}' غير صالحة."
     correction = suggest_correction(t.value)
-    print(f"{error_message} Suggestions: {correction}")
+    print(f"{error_message} اقتراحات: {correction}")
     t.lexer.skip(1)
 
+# Construire l'analyseur lexical
 lexer = lex.lex()
 
+# Fonction pour analyser une entrée textuelle
 def analyze_lexical(input_data):
     errors = []
     lexer.input(input_data)
@@ -53,6 +96,11 @@ def analyze_lexical(input_data):
             errors.append(str(error_entry))  
     return errors 
 
+# Exemple principal
 if __name__ == "__main__":
-    input = "Ql huwa allahu ahadun"
-    print(analyze_lexical(input))
+    input_data = "قل هو الله احد ولم يولد"
+    errors = analyze_lexical(input_data)
+    if errors:
+        print("\n".join(errors))
+    else:
+        print("النص صالح لغوياً.")
