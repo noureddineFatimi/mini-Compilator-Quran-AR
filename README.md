@@ -1,4 +1,4 @@
-# 📜 Al-Ikhlass Verse Compiler
+# 📜 Verses Compiler
 
 A Python-based mini-compiler for validating and processing verses from Surah Al-Ikhlass in the Holy Quran. This application uses PLY (Python Lex-Yacc) to perform lexical, syntactic, and semantic analysis of Quranic verses in both Arabic script and phonetic transcription.
 
