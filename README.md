@@ -33,7 +33,7 @@ A Python-based mini-compiler for validating and processing verses from Surah Al-
 ## 📹 Video Demonstrations
 
 ### 📝 Link to my drive
-  - <a href="https://drive.google.com/drive/folders/1ry6ae5kcRUNoOBda-b_0wPMyMtP4qZ0a?usp=drive_link">My drive</a>
+  - <a href="https://drive.google.com/drive/folders/1ry6ae5kcRUNoOBda-b_0wPMyMtP4qZ0a?usp=drive_link" target="_blank">My drive</a>
 
 ## 📦 Installation & Setup
 
