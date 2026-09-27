@@ -30,11 +30,6 @@ A Python-based mini-compiler for validating and processing verses from Surah Al-
 </p>
 <p align="center"><em>Validation of verses in Arabic script with detailed feedback</em></p>
 
-## 📹 Video Demonstrations
-
-### 📝 Link to my drive
-  - <a href="https://drive.google.com/drive/folders/1ry6ae5kcRUNoOBda-b_0wPMyMtP4qZ0a?usp=drive_link" target="_blank" rel="noopener noreferrer">My drive</a>
-
 ## 📦 Installation & Setup
 
 ### 📝 Prerequisites
